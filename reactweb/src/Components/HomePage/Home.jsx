@@ -10,6 +10,10 @@ const Home = () => {
     window.location.href = '/library';
   };
 
+  const goToFavorites = () => {
+    window.location.href = '/favorites';
+  };
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -70,7 +74,10 @@ const Home = () => {
           >
             Browse Library
           </button>
-          <button className={styles.actionButton}>
+          <button 
+            onClick={goToFavorites}
+            className={styles.actionButton}
+          >
             My Reading List
           </button>
         </div>
