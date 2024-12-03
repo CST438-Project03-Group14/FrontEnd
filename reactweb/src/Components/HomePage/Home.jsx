@@ -78,7 +78,7 @@ const Home = () => {
             onClick={goToFavorites}
             className={styles.actionButton}
           >
-            My Reading List
+            My Favorites
           </button>
         </div>
       </div>
