@@ -1,52 +1,41 @@
 .navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: white;
-    padding: 0.75rem 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-}
-
-/* Logo Section */
-.navLeft {
+    align-items: center;
+    padding: 1rem 2rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navLeft {
     display: flex;
     align-items: center;
-}
-
-.logo {
+  }
+  
+  .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
+    color: #2b86e2;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2b86e2;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.logoIcon {
+  }
+  
+  .logoIcon {
     font-size: 1.8rem;
-}
-
-.navCenter {
-    flex: 1;
-    max-width: 600px;
-    margin: 0 2rem;
-}
-
-/* Navigation Buttons */
-.navRight {
+  }
+  
+  .navRight {
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.navButton {
+  }
+  
+  .navButton {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -54,130 +43,101 @@
     border: none;
     background: transparent;
     color: #666;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1rem;
     cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.navButton:hover {
-    background: rgba(43, 134, 226, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .navButton:hover {
     color: #2b86e2;
-}
-
-.navButton.active {
-    background: #2b86e2;
-    color: white;
-}
-
-/* User Menu */
-.userMenuContainer {
+    background: rgba(43, 134, 226, 0.1);
+  }
+  
+  .navButton.active {
+    color: #2b86e2;
+    background: rgba(43, 134, 226, 0.1);
+    font-weight: 500;
+  }
+  
+  .userMenuContainer {
     position: relative;
-}
-
-.userButton {
+  }
+  
+  .userButton {
     display: flex;
     align-items: center;
-    padding: 0.5rem;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-}
-
-.userButton:hover {
     background: rgba(43, 134, 226, 0.1);
-}
-
-.userAvatar {
-    width: 32px;
-    height: 32px;
+    color: #2b86e2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .userButton:hover {
+    background: rgba(43, 134, 226, 0.2);
+  }
+  
+  .userAvatar {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
-}
-
-.dropdown {
+  }
+  
+  .dropdown {
     position: absolute;
     top: 100%;
     right: 0;
     margin-top: 0.5rem;
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
     min-width: 200px;
-    padding: 0.5rem;
-    z-index: 1000;
-}
-
-.userInfo {
-    padding: 0.75rem;
+  }
+  
+  .userInfo {
     text-align: center;
-}
-
-.username {
-    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .username {
     font-weight: 600;
     color: #333;
-}
-
-.email {
-    margin: 0.25rem 0 0;
-    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .email {
+    font-size: 0.9rem;
     color: #666;
-}
-
-.divider {
-    margin: 0.5rem 0;
+  }
+  
+  .divider {
     border: none;
     border-top: 1px solid #eee;
-}
-
-.dropdownButton {
+    margin: 0.5rem 0;
+  }
+  
+  .dropdownButton {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border: none;
     background: transparent;
-    color: #666;
-    font-size: 0.95rem;
+    color: #ff4444;
     cursor: pointer;
     border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.dropdownButton:hover {
-    background: #f5f5f5;
-    color: #dc3545;
-}
-
-.genreSelect {
-    padding: 8px 16px;
-    font-size: 16px;
-    border: 2px solid #2b86e2;
-    border-radius: 8px;
-    background-color: white;
-    color: #333;
-    cursor: pointer;
-    width: 200px;
     transition: all 0.3s ease;
   }
   
-  .genreSelect:hover {
-    border-color: #4f73f1;
+  .dropdownButton:hover {
+    background: rgba(255, 68, 68, 0.1);
   }
   
-  .genreSelect:focus {
-    outline: none;
-    border-color: #4f73f1;
-    box-shadow: 0 0 0 2px rgba(43, 134, 226, 0.2);
-  }
-  
-  .genreSelect option {
-    padding: 8px;
-    font-size: 16px;
-  }
-

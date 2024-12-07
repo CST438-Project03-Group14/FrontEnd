@@ -1,273 +1,201 @@
-.wrapper {
-    width: 100%;
+.container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    color: #2b86e2;
-    border-radius: 12px;
-    font-family: 'Roboto', sans-serif;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    animation: fadeIn 0.3s ease-out forwards;
-}
-
-.title {
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+  
+  .title {
     font-size: 2.5rem;
-    margin: 0;
     color: #2b86e2;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.backButton {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .statusFilters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .filterButton {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #2b86e2;
+    border-radius: 8px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
     color: #2b86e2;
-    padding: 12px 24px;
-    border-radius: 40px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.backButton:hover {
+    font-weight: 500;
+  }
+  
+  .filterButton:hover {
     background: rgba(43, 134, 226, 0.1);
-    border-color: #4f73f1;
-    transform: translateY(-2px);
-}
-
-.statsSection {
+  }
+  
+  .filterButton.active {
+    background: #2b86e2;
+    color: white;
+  }
+  
+  .booksGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-bottom: 40px;
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.05);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .bookCard {
+    background: white;
     border-radius: 12px;
-    animation: fadeIn 0.4s ease-out forwards;
-}
-
-.stat {
-    text-align: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.stat:hover {
-    transform: translateY(-3px);
-    border-color: rgba(79, 115, 241, 0.3);
-}
-
-.stat h3 {
-    margin: 0 0 15px 0;
-    color: #2b86e2;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.stat p {
-    margin: 0;
-    font-size: 1.8rem;
-    color: #4f73f1;
-    font-weight: bold;
-}
-
-.favoritesList {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 25px;
-    padding: 20px 0;
-    animation: fadeIn 0.5s ease-out forwards;
-}
-
-.favoriteCard {
-    display: flex;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 25px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.favoriteCard:hover {
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .bookCard:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    border-color: rgba(79, 115, 241, 0.3);
-}
-
-.bookCover {
-    width: 150px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .bookCover {
+    width: 100%;
     height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin-right: 25px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.favoriteCard:hover .bookCover {
-    transform: scale(1.05);
-}
-
-.bookInfo {
-    flex: 1;
+    background: #f5f5f5;
     display: flex;
-    flex-direction: column;
-}
-
-.bookTitle {
-    margin: 0 0 10px 0;
-    font-size: 1.4rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .coverImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .defaultCover {
+    font-size: 3rem;
     color: #2b86e2;
-    font-weight: 600;
-}
-
-.bookAuthor {
-    margin: 0 0 15px 0;
-    color: rgba(43, 134, 226, 0.8);
-    font-size: 1.1rem;
-}
-
-.genre {
+  }
+  
+  .bookInfo {
+    padding: 1.5rem;
+  }
+  
+  .bookTitle {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bookAuthor {
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bookGenre {
     display: inline-block;
-    padding: 6px 12px;
-    background: rgba(79, 115, 241, 0.1);
-    border: 1px solid rgba(79, 115, 241, 0.3);
+    padding: 0.3rem 0.8rem;
+    background: rgba(43, 134, 226, 0.1);
+    color: #2b86e2;
     border-radius: 20px;
     font-size: 0.9rem;
-    color: #4f73f1;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-}
-
-.dateAdded {
-    color: rgba(43, 134, 226, 0.7);
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
-.notesArea {
+    margin-bottom: 1rem;
+  }
+  
+  .statusSelect {
+    margin: 1rem 0;
+  }
+  
+  .statusSelect select {
     width: 100%;
-    min-height: 100px;
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-    color: #2b86e2;
-    margin-bottom: 20px;
-    resize: vertical;
-    font-family: 'Roboto', sans-serif;
-    transition: all 0.3s ease;
-}
-
-.notesArea:focus {
-    border-color: #4f73f1;
-    box-shadow: 0 0 8px rgba(79, 115, 241, 0.6);
-    outline: none;
-}
-
-.notesArea::placeholder {
-    color: rgba(43, 134, 226, 0.6);
-}
-
-.cardActions {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1rem;
+  }
+  
+  .cardActions {
     display: flex;
-    gap: 15px;
-    margin-top: auto;
-}
-
-.removeButton {
-    background: rgba(255, 73, 73, 0.1);
-    color: #ff4949;
-    border: 2px solid rgba(255, 73, 73, 0.3);
-    padding: 10px 20px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.removeButton:hover {
-    background: rgba(255, 73, 73, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.readButton {
-    background: #4f73f1;
-    color: white;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .viewButton, .removeButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
     border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.readButton:hover {
-    background: #405bb6;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+  }
+  
+  .viewButton {
+    background: #2b86e2;
+    color: white;
+  }
+  
+  .viewButton:hover {
+    background: #4f73f1;
+  }
+  
+  .removeButton {
+    background: #ff4444;
+    color: white;
+  }
+  
+  .removeButton:hover {
+    background: #ff6666;
+  }
+  
+  .noBooks {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+  }
+  
+  .loading, .error {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+  }
+  
+  .loading {
+    color: #2b86e2;
+  }
+  
+  .error {
+    color: #ff4444;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+  
+    .title {
+      font-size: 2rem;
     }
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .wrapper {
-        padding: 20px;
+  
+    .statusFilters {
+      flex-direction: column;
+      padding: 0 1rem;
     }
-
-    .statsSection {
-        grid-template-columns: 1fr;
+  
+    .filterButton {
+      width: 100%;
     }
-
-    .favoriteCard {
-        flex-direction: column;
-    }
-
-    .bookCover {
-        width: 120px;
-        height: 180px;
-        margin: 0 auto 20px;
-    }
-
+  
     .cardActions {
-        flex-direction: column;
+      flex-direction: column;
     }
-
-    .removeButton,
-    .readButton {
-        width: 100%;
-        text-align: center;
-    }
-}
+  }

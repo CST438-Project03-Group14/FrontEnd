@@ -14,11 +14,7 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [user, setUser] = useState(null);
-  const [selectedGenre, setSelectedGenre] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-
-  // Fixed genres
-  const genres = ['Classic', 'Non-Fiction', 'Fantasy'];
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -26,18 +22,6 @@ const Navigation = () => {
       setUser(JSON.parse(userData));
     }
   }, []);
-
-  const handleGenreSelect = async (genre) => {
-    try {
-      const response = await fetch(`https://bookhive-90e4e8826675.herokuapp.com/api/books/search/?q=${genre}`);
-      if (response.ok) {
-        const data = await response.json();
-        navigate('/library', { state: { searchResults: data, selectedGenre: genre } });
-      }
-    } catch (error) {
-      console.error('Genre search error:', error);
-    }
-  };
 
   const handleLogout = async () => {
     try {
@@ -65,26 +49,6 @@ const Navigation = () => {
           <FaBook className={styles.logoIcon} />
           <span>BookHive</span>
         </div>
-      </div>
-
-      <div className={styles.navCenter}>
-        <select 
-          className={styles.genreSelect}
-          value={selectedGenre}
-          onChange={(e) => {
-            setSelectedGenre(e.target.value);
-            if (e.target.value) {
-              handleGenreSelect(e.target.value);
-            }
-          }}
-        >
-          <option value="">Select Genre</option>
-          {genres.map((genre) => (
-            <option key={genre} value={genre}>
-              {genre}
-            </option>
-          ))}
-        </select>
       </div>
 
       <div className={styles.navRight}>
@@ -119,15 +83,9 @@ const Navigation = () => {
             className={styles.userButton}
             onClick={() => setShowDropdown(!showDropdown)}
           >
-            {user?.profile_image ? (
-              <img 
-                src={user.profile_image} 
-                alt={user.username} 
-                className={styles.userAvatar}
-              />
-            ) : (
+            (
               <FaUser />
-            )}
+            )
           </button>
 
           {showDropdown && (

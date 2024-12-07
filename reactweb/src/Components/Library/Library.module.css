@@ -146,17 +146,36 @@
   padding: 2rem;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
 
-  .booksGrid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-  }
+.genreButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
 
-  .title {
-    font-size: 2rem;
-  }
+.genreButton {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #2b86e2;
+  border-radius: 8px;
+  background: transparent;
+  color: #2b86e2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.genreButton:hover {
+  background: rgba(43, 134, 226, 0.1);
+}
+
+.genreButton.active {
+  background: #2b86e2;
+  color: white;
 }
