@@ -1,111 +1,100 @@
-/* LoginForm.module.css */
-
-/* Center the form in the viewport */
 .wrapper {
-    width: 420px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); /* More subtle blur */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-    color: #fff;
-    border-radius: 12px; /* Softer corners */
-    padding: 30px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto', sans-serif;
+  width: 420px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #333;
+  border-radius: 12px;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.brandSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.brandIcon {
+  font-size: 48px;
+  color: #2b86e2;
+  margin-bottom: 15px;
+}
+
+.brandSection h1 {
+  font-size: 32px;
+  color: #2b86e2;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.brandTagline {
+  color: #666;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.loginSection {
+  width: 100%;
+  text-align: center;
+}
+
+.loginSection h2 {
+  color: #2b86e2;
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.loginMessage {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.googleLoginWrapper {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: #ff4444;
+  margin: 10px 0;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  background: #fff2f2;
+  border-radius: 8px;
+}
+
+.termsSection {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #666;
+}
+
+.termsLinks {
+  margin-top: 5px;
+}
+
+.termsLink {
+  color: #2b86e2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.termsLink:hover {
+  color: #4f73f1;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+      width: 90%;
+      padding: 20px;
   }
-  
-  /* Heading style */
-  .wrapper h1 {
-    font-size: 28px; /* Slightly smaller for better proportions */
-    font-weight: 700;
-    margin-bottom: 25px;
-    text-align: center;
-    color: #2b86e2;
-    letter-spacing: 1px;
-  }
-  
-  /* Input field container */
-  .inputBox {
-    position: relative;
-    width: 100%;
-    margin: 20px 0;
-  }
-  
-  /* Style the input fields */
-  .inputBox input {
-    width: 100%;
-    height: 50px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 40px;
-    color: rgb(233, 29, 29);
-    padding: 15px 40px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  /* Input field placeholder style */
-  .inputBox input::placeholder {
-    color: rgb(13, 12, 12);
-    opacity: 0.8;
-  }
-  
-  /* Focus effect on input fields */
-  .inputBox input:focus {
-    border-color: #131314;
-    box-shadow: 0 0 8px rgba(79, 115, 241, 0.6);
-  }
-  
-  /* Icon inside the input field */
-  .inputBox .icon {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #0b0b0b;
-  }
-  
-  /* Button styling */
-  .wrapper button {
-    width: 100%;
-    height: 45px;
-    background: #4f73f1;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    font-size: 16px;
-    color: rgb(18, 16, 16);
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .wrapper button:hover {
-    background: #405bb6;
-  }
-  
-  /* Register link styling */
-  .registerLink {
-    font-size: 14px;
-    text-align: center;
-    color: #070707;
-  }
-  
-  .registerLink p a {
-    color: rgb(21, 20, 20);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  .registerLink p a:hover {
-    color: #4f73f1;
-    text-decoration: underline;
-  }
-  
+}

@@ -1,79 +1,86 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 import styles from './Login.module.css';
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Mock credentials
-  const mockUsers = [
-    { email: 'user@example.com', password: 'password123' },
-    { email: 'admin@example.com', password: 'admin123' },
-    { email: 'test@test.com', password: 'test123' }
-  ];
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
+      
+      const userData = {
+        username: decoded.email.split('@')[0],
+        email: decoded.email,
+        password: `google_${Date.now()}`,
+        is_librarian: 0,
+        profile_image: decoded.picture || null,
+      };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    
-    const user = mockUsers.find(
-      user => user.email === email && user.password === password
-    );
+      const response = await fetch('https://bookhive-90e4e8826675.herokuapp.com/api/users/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
 
-    if (user) {
-      setError('');
-      localStorage.setItem('user', JSON.stringify({ email: user.email }));
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.json();
+      localStorage.setItem('user', JSON.stringify({
+        user_id: data.user.user_id,
+        username: data.user.username,
+        is_librarian: data.user.is_librarian,
+        email: data.user.email
+      }));
+
       navigate('/home');
-    } else {
-      setError('Invalid credentials. Try one of these test accounts:');
+      
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('An error occurred during login. Please try again.');
     }
   };
 
   return (
     <div className={styles.wrapper}>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div className={styles.inputBox}>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+      <div className={styles.brandSection}>
+        <FaBook className={styles.brandIcon} />
+        <h1>BookHive</h1>
+        <p className={styles.brandTagline}>Your Digital Library Companion</p>
+      </div>
+
+      <div className={styles.loginSection}>
+        <h2>Welcome Back</h2>
+        <p className={styles.loginMessage}>Sign in to continue to your library</p>
+
+        <div className={styles.googleLoginWrapper}>
+          <GoogleLogin
+            onSuccess={handleGoogleLoginSuccess}
+            onError={() => {
+              setError('Login failed. Please try again.');
+            }}
+            useOneTap={false}
           />
-          <FaEnvelope className={styles.icon} />
         </div>
-        <div className={styles.inputBox}>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <FaLock className={styles.icon} />
-        </div>
-        {error && (
-          <div className={styles.error}>
-            {error}
-            <div className={styles.testCredentials}>
-              {mockUsers.map((user, index) => (
-                <p key={index}>
-                  Email: {user.email} | Password: {user.password}
-                </p>
-              ))}
-            </div>
+
+        {error && <div className={styles.error}>{error}</div>}
+
+        <div className={styles.termsSection}>
+          <p>By signing in, you agree to our</p>
+          <div className={styles.termsLinks}>
+            <a href="#" className={styles.termsLink}>Terms of Service</a>
+            <span> and </span>
+            <a href="#" className={styles.termsLink}>Privacy Policy</a>
           </div>
-        )}
-        <button type="submit">Login</button>
-      </form>
-      <div className={styles.registerLink}>
-        <p>
-          Don't have an account? <a href="/signup">Sign up</a>
-        </p>
+        </div>
       </div>
     </div>
   );
