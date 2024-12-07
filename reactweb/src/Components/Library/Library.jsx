@@ -4,44 +4,57 @@ import styles from './Library.module.css';
 
 const Library = () => {
   const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    fetchBooks();
-  }, []);
+    // If we have search results from genre selection, use those
+    if (location.state?.searchResults) {
+      setBooks(location.state.searchResults);
+    } else {
+      fetchAllBooks();
+    }
+  }, [location.state]);
 
-  const fetchBooks = async () => {
-    try {
-      const response = await fetch('https://bookhive-90e4e8826675.herokuapp.com/api/books/');
+  const fetchAllBooks = async () => {
+    const response = await fetch('https://bookhive-90e4e8826675.herokuapp.com/api/books/');
       if (!response.ok) {
         throw new Error('Failed to fetch books');
       }
       const data = await response.json();
-      console.log('Fetched books:', data); // For debugging
       setBooks(data);
-      setLoading(false);
-    } catch (err) {
-      console.error('Error fetching books:', err);
-      setError(err.message);
-      setLoading(false);
-    }
   };
 
-  if (loading) {
-    return <div className={styles.loadingContainer}>Loading books...</div>;
-  }
+  const handleGenreSelect = async (genre) => {
+    const response = await fetch(`https://bookhive-90e4e8826675.herokuapp.com/api/books/search/?q=${genre}`);
+      if (response.ok) {
+        const data = await response.json();
+        setBooks(data);
+      }
+  };
 
-  if (error) {
-    return <div className={styles.errorContainer}>Error: {error}</div>;
-  }
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>Library Collection</h1>
+        <div className={styles.genreButtons}>
+          <button 
+            className={styles.genreButton}
+            onClick={() => fetchAllBooks()}
+          >
+            All Books
+          </button>
+          {['Classic', 'Non-Fiction', 'Fantasy'].map((genre) => (
+            <button
+              key={genre}
+              className={`${styles.genreButton} ${location.state?.selectedGenre === genre ? styles.active : ''}`}
+              onClick={() => handleGenreSelect(genre)}
+            >
+              {genre}
+            </button>
+          ))}
+        </div>
       </header>
 
       <div className={styles.booksGrid}>
